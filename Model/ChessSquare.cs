@@ -1,13 +1,17 @@
+using QuickChess.Model.Pieces;
+
 namespace QuickChess.Model
 {
     public class ChessSquare
     {
-        public int Row { get; set; }
-        public int Column { get; set; }
+        public uint Row { get; set; }
+        public uint Column { get; set; }
         public bool IsOccupied { get; set; }
         public bool IsLegalNextMove { get; set; }
+        // Allowed to be null in case the tile is empty (no piece is present on the square).
+        public BoardPiece? CurrPiece { get; set; }
 
-        public ChessSquare (int row, int column)
+        public ChessSquare (uint row, uint column)
         {
             Row = row;
             Column = column;
@@ -15,7 +19,7 @@ namespace QuickChess.Model
             IsLegalNextMove = false;
         }
 
-        public ChessSquare (int row, int column, bool isOccupied)
+        public ChessSquare (uint row, uint column, bool isOccupied)
         {
             Row = row;
             Column = column;
@@ -23,7 +27,7 @@ namespace QuickChess.Model
             IsLegalNextMove = false;
         }
 
-        public ChessSquare (int row, int column, bool isOccupied, bool isLegalNextMove)
+        public ChessSquare (uint row, uint column, bool isOccupied, bool isLegalNextMove)
         {
             Row = row;
             Column = column;
