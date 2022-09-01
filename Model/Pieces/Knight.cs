@@ -2,7 +2,7 @@ namespace QuickChess.Model.Pieces
 {
     public class Knight : BoardPiece
     {
-        void MakeMove ()
+        void MakeMove (int currRow, int currColumn)
         {
             
         }
