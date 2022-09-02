@@ -6,31 +6,26 @@ namespace QuickChess.Model
     {
         public uint Row { get; set; }
         public uint Column { get; set; }
-        public bool IsOccupied { get; set; }
-        public bool IsLegalNextMove { get; set; }
+        public BoardPiece? Piece { get; set; }
 
         public ChessSquare (uint row, uint column)
         {
             Row = row;
             Column = column;
-            IsOccupied = false;
-            IsLegalNextMove = false;
+            Piece = null;
         }
 
-        public ChessSquare (uint row, uint column, bool isOccupied)
+        public ChessSquare (uint row, uint column, BoardPiece piece)
         {
             Row = row;
             Column = column;
-            IsOccupied = isOccupied;
-            IsLegalNextMove = false;
+            Piece = piece;
         }
 
-        public ChessSquare (uint row, uint column, bool isOccupied, bool isLegalNextMove)
+        public bool IsOccupied ()
         {
-            Row = row;
-            Column = column;
-            IsOccupied = isOccupied;
-            IsLegalNextMove = isLegalNextMove;
+            if (Piece == null) return false;
+            return true;
         }
     }
 }

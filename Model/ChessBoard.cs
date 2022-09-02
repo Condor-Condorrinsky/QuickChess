@@ -18,5 +18,11 @@ namespace QuickChess.Model
                 }
             }
         }
+
+        // Should belong to View but it's a temporary solution
+        public void printBoard ()
+        {
+            
+        }
     }
 }
