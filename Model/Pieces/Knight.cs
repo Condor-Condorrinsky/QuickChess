@@ -2,16 +2,17 @@ namespace QuickChess.Model.Pieces
 {
     public class Knight : BoardPiece
     {
-        public ChessSquare CurrSquare { get; set; }
+        private const string KNIGHT_NAME = "Knight";
 
-        public Knight (ChessSquare square)
+        public Knight () : base()
         {
-            CurrSquare = square;
+            this.Name = KNIGHT_NAME;
         }
 
-        public override void MakeMove (int currRow, int currColumn)
+        public Knight (ChessSquare currentSquare) : base()
         {
-
+            this.CurrSquare = currentSquare;
+            this.Name = KNIGHT_NAME;
         }
     }
 }
