@@ -10,16 +10,16 @@ namespace QuickChess.Model
 
         public ChessSquare (uint row, uint column)
         {
-            Row = row;
-            Column = column;
-            Piece = null;
+            this.Row = row;
+            this.Column = column;
+            this.Piece = null;
         }
 
         public ChessSquare (uint row, uint column, BoardPiece piece)
         {
-            Row = row;
-            Column = column;
-            Piece = piece;
+            this.Row = row;
+            this.Column = column;
+            this.Piece = piece;
         }
 
         public bool IsOccupied ()
