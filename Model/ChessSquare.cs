@@ -6,14 +6,7 @@ namespace QuickChess.Model
     {
         public uint Row { get; set; }
         public uint Column { get; set; }
-        public BoardPiece? Piece { get; set; }
-
-        public ChessSquare (uint row, uint column)
-        {
-            this.Row = row;
-            this.Column = column;
-            this.Piece = null;
-        }
+        public BoardPiece Piece { get; set; }
 
         public ChessSquare (uint row, uint column, BoardPiece piece)
         {

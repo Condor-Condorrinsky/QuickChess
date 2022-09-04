@@ -1,22 +1,14 @@
 namespace QuickChess.Model.Pieces
 {
-    public abstract class BoardPiece
+    public class BoardPiece
     {
-        private const string DEFAULT_NAME = "DefaultName";
+        public string FullName { get; set; }
+        public char ShortName { get; set; }
 
-        public ChessSquare? CurrSquare { get; set; }
-        public string Name { get; protected set; }
-
-        public BoardPiece ()
+        public BoardPiece (string fullName, char shortName)
         {
-            this.CurrSquare = null;
-            this.Name = DEFAULT_NAME;
-        }
-
-        public BoardPiece (ChessSquare currentSquare)
-        {
-            CurrSquare = currentSquare;
-            Name = DEFAULT_NAME;
+            this.FullName = fullName;
+            this.ShortName = shortName;
         }
     }
 }
