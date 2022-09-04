@@ -30,14 +30,30 @@ namespace QuickChess.Model
             {
                 for (uint j = 0; j < Size; j++)
                 {
-                    
                     switch (Grid[i, j].Piece.FullName)
                     {
                         case FullNamesOfPieces.None:
                             PrintSingleSquare(j, ShortNamesOfPieces.None);
                             break;
+                        case FullNamesOfPieces.Pawn:
+                            PrintSingleSquare(j, ShortNamesOfPieces.Pawn);
+                            break;
                         case FullNamesOfPieces.Knight:
                             PrintSingleSquare(j, ShortNamesOfPieces.Knight);
+                            break;
+                        case FullNamesOfPieces.Bishop:
+                            PrintSingleSquare(j, ShortNamesOfPieces.Bishop);
+                            break;
+                        case FullNamesOfPieces.Rook:
+                            PrintSingleSquare(j, ShortNamesOfPieces.Rook);
+                            break;
+                        case FullNamesOfPieces.Queen:
+                            PrintSingleSquare(j, ShortNamesOfPieces.Queen);
+                            break;
+                        case FullNamesOfPieces.King:
+                            PrintSingleSquare(j, ShortNamesOfPieces.King);
+                            break;
+                        default:
                             break;
                     }
                 }
