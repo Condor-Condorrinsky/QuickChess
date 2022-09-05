@@ -54,7 +54,7 @@ namespace QuickChess.Model
                             PrintSingleSquare(j, ShortNamesOfPieces.King);
                             break;
                         default:
-                            break;
+                            throw new ArgumentException("ChessBoard received different piece than expected.");
                     }
                 }
             }
