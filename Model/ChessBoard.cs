@@ -23,6 +23,11 @@ namespace QuickChess.Model
             }
         }
 
+        public void PutPiece(uint row, uint column, BoardPiece piece)
+        {
+            this.Grid[row, column].Piece = piece;
+        }
+
         // Should belong to View but it's a temporary solution
         public void PrintBoard ()
         {
