@@ -8,19 +8,26 @@ namespace QuickChess.Model
     {
         public int Size { get; set; }
         public ChessSquare[,] Grid { get; set; }
+        private PieceSpawner Spawner { get; }
 
         public ChessBoard (int size)
         {
             this.Size = size;
             this.Grid = new ChessSquare[size, size];
+            this.Spawner = new PieceSpawner();
 
             for (uint i = 0; i < size; i++)
             {
                 for (uint j = 0; j < size; j++)
                 {
-                    Grid[i, j] = new ChessSquare(i, j, new BoardPiece(FullNamesOfPieces.None, ShortNamesOfPieces.None, PieceColour.NONE));
+                    PutPiece(i, j, Spawner.GetDefaultPiece());
                 }
             }
+        }
+
+        public BoardPiece GetPiece(uint row, uint column)
+        {
+            return this.Grid[row, column].Piece;
         }
 
         public void PutPiece(uint row, uint column, BoardPiece piece)
@@ -35,7 +42,7 @@ namespace QuickChess.Model
             {
                 for (uint j = 0; j < Size; j++)
                 {
-                    switch (Grid[i, j].Piece.FullName)
+                    switch (GetPiece(i, j).FullName)
                     {
                         case FullNamesOfPieces.None:
                             PrintSingleSquare(j, ShortNamesOfPieces.None);
@@ -67,13 +74,13 @@ namespace QuickChess.Model
 
         private void PrintSingleSquare (uint i, char c)
         {
-            const int CLASSIC_CHESSBOARD_WIDTH = 8;
+            const char NEWLINE = '\n';
             const char COLUMN_SEPARATOR = ' ';
 
-            if ((i + 1) % CLASSIC_CHESSBOARD_WIDTH == 0)
+            if ((i + 1) % Size == 0)
             {
                 // Finished priniting row, moving to another.
-                Console.Write(c + '\n');
+                Console.Write(c + NEWLINE);
                 return;
             }
 
