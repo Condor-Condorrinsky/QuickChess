@@ -1,6 +1,6 @@
 namespace QuickChess.Model.Pieces
 {
-    public enum PieceColour
+    public enum Colour
     {
         NONE = 0,
         WHITE = 1,

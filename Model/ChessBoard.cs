@@ -1,6 +1,4 @@
 using QuickChess.Model.Pieces;
-using System.Collections.Generic;
-using System;
 
 namespace QuickChess.Model
 {
@@ -42,6 +40,8 @@ namespace QuickChess.Model
             {
                 for (uint j = 0; j < Size; j++)
                 {
+                    BoardPiece piece = GetPiece(i, j);
+
                     switch (GetPiece(i, j).FullName)
                     {
                         case FullNamesOfPieces.None:

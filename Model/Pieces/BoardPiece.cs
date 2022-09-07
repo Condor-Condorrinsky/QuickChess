@@ -4,9 +4,9 @@ namespace QuickChess.Model.Pieces
     {
         public string FullName { get; }
         public char ShortName { get; }
-        public PieceColour Colour { get; }
+        public Colour Colour { get; }
 
-        public BoardPiece (string fullName, char shortName, PieceColour colour)
+        public BoardPiece (string fullName, char shortName, Colour colour)
         {
             this.FullName = fullName;
             this.ShortName = shortName;
