@@ -36,28 +36,28 @@ namespace QuickChess.Model
                 {
                     BoardPiece piece = GetPiece(i, j);
 
-                    switch (GetPiece(i, j).FullName)
+                    switch (piece.FullName)
                     {
                         case FullNamesOfPieces.None:
-                            PrintSingleSquare(j, ShortNamesOfPieces.None);
+                            PrintSingleSquare(j, ShortNamesOfPieces.None, piece.Colour);
                             break;
                         case FullNamesOfPieces.Pawn:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Pawn);
+                            PrintSingleSquare(j, ShortNamesOfPieces.Pawn, piece.Colour);
                             break;
                         case FullNamesOfPieces.Knight:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Knight);
+                            PrintSingleSquare(j, ShortNamesOfPieces.Knight, piece.Colour);
                             break;
                         case FullNamesOfPieces.Bishop:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Bishop);
+                            PrintSingleSquare(j, ShortNamesOfPieces.Bishop, piece.Colour);
                             break;
                         case FullNamesOfPieces.Rook:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Rook);
+                            PrintSingleSquare(j, ShortNamesOfPieces.Rook, piece.Colour);
                             break;
                         case FullNamesOfPieces.Queen:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Queen);
+                            PrintSingleSquare(j, ShortNamesOfPieces.Queen, piece.Colour);
                             break;
                         case FullNamesOfPieces.King:
-                            PrintSingleSquare(j, ShortNamesOfPieces.King);
+                            PrintSingleSquare(j, ShortNamesOfPieces.King, piece.Colour);
                             break;
                         default:
                             throw new ArgumentException("ChessBoard received different piece than expected.");
@@ -66,10 +66,23 @@ namespace QuickChess.Model
             }
         }
 
-        private void PrintSingleSquare (uint i, char c)
+        private void PrintSingleSquare (uint i, char c, Colour colour)
         {
             const char NEWLINE = '\n';
             const char COLUMN_SEPARATOR = ' ';
+
+            switch (colour)
+            {
+                case Colour.NONE:
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
+                case Colour.WHITE:
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
+                case Colour.BLACK:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+            }
 
             if ((i + 1) % Size == 0)
             {
@@ -79,6 +92,7 @@ namespace QuickChess.Model
             }
 
             Console.Write(c + COLUMN_SEPARATOR);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
