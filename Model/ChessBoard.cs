@@ -18,7 +18,7 @@ namespace QuickChess.Model
             {
                 for (uint j = 0; j < size; j++)
                 {
-                    Grid[i, j] = new ChessSquare(i, j, new BoardPiece(FullNamesOfPieces.None, ShortNamesOfPieces.None));
+                    Grid[i, j] = new ChessSquare(i, j, new BoardPiece(FullNamesOfPieces.None, ShortNamesOfPieces.None, PieceColour.NONE));
                 }
             }
         }

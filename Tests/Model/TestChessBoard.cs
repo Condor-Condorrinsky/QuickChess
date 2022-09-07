@@ -13,10 +13,11 @@ namespace QuickChess.Tests.Model
         public void TestPutPiece ()
         {
             ChessBoard chessBoard = new ChessBoard(CLASSIC_CHESSBOARD_SIZE);
+            PieceSpawner ps = new PieceSpawner();
 
-            BoardPiece bishop = new BoardPiece(FullNamesOfPieces.Bishop, ShortNamesOfPieces.Bishop);
-            BoardPiece king = new BoardPiece(FullNamesOfPieces.King, ShortNamesOfPieces.King);
-            BoardPiece queen = new BoardPiece(FullNamesOfPieces.Queen, ShortNamesOfPieces.Queen);
+            BoardPiece bishop = ps.GetNewBlackBishop();
+            BoardPiece king = ps.GetNewBlackKing();
+            BoardPiece queen = ps.GetNewBlackQueen();
 
             chessBoard.PutPiece(0, 1, bishop);
             chessBoard.PutPiece(5, 7, king);
