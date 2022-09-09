@@ -6,19 +6,20 @@ namespace QuickChess.Model
     {
         public int Size { get; set; }
         public ChessSquare[,] Grid { get; set; }
-        private PieceFactory Spawner { get; }
+        private PieceFactory Factory { get; }
 
         public ChessBoard (int size)
         {
             this.Size = size;
             this.Grid = new ChessSquare[size, size];
-            this.Spawner = new PieceFactory();
+            this.Factory = new PieceFactory();
 
             for (uint i = 0; i < size; i++)
             {
                 for (uint j = 0; j < size; j++)
                 {
-                    PutPiece(i, j, Spawner.GetDefaultPiece());
+                    // PutPiece(i, j, Factory.GetDefaultPiece());
+                    Grid[i, j] = new ChessSquare(i, j, Factory.GetDefaultPiece());
                 }
             }
         }

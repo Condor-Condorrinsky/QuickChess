@@ -26,6 +26,8 @@ namespace QuickChess.Tests.Model
             Assert.AreEqual(chessBoard.Grid[0,1].Piece.FullName, bishop.FullName);
             Assert.AreEqual(chessBoard.Grid[5,7].Piece.FullName, king.FullName);
             Assert.AreEqual(chessBoard.Grid[5,3].Piece.FullName, queen.FullName);
+
+            //chessBoard.PrintBoard();
         }
     }
 }

@@ -17,7 +17,9 @@ namespace QuickChess.Model
 
         public bool IsOccupied ()
         {
-            if (Piece == null) return false;
+            PieceFactory pf = new PieceFactory();
+
+            if (Piece.Equals(pf.GetDefaultPiece())) return false;
             return true;
         }
     }
