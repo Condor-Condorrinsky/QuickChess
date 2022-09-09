@@ -13,7 +13,7 @@ namespace QuickChess.Tests.Model
         public void TestPutPiece ()
         {
             ChessBoard chessBoard = new ChessBoard(CLASSIC_CHESSBOARD_SIZE);
-            PieceSpawner ps = new PieceSpawner();
+            PieceFactory ps = new PieceFactory();
 
             BoardPiece bishop = ps.GetNewBlackBishop();
             BoardPiece king = ps.GetNewBlackKing();

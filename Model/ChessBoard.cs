@@ -6,13 +6,13 @@ namespace QuickChess.Model
     {
         public int Size { get; set; }
         public ChessSquare[,] Grid { get; set; }
-        private PieceSpawner Spawner { get; }
+        private PieceFactory Spawner { get; }
 
         public ChessBoard (int size)
         {
             this.Size = size;
             this.Grid = new ChessSquare[size, size];
-            this.Spawner = new PieceSpawner();
+            this.Spawner = new PieceFactory();
 
             for (uint i = 0; i < size; i++)
             {

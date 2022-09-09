@@ -1,8 +1,8 @@
 namespace QuickChess.Model.Pieces
 {
-    public class PieceSpawner
+    public class PieceFactory
     {
-        public PieceSpawner () {}
+        public PieceFactory () {}
 
         public BoardPiece GetDefaultPiece ()
         {
