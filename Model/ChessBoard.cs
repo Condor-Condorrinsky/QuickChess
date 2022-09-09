@@ -71,6 +71,8 @@ namespace QuickChess.Model
         {
             const char NEWLINE = '\n';
             const char COLUMN_SEPARATOR = ' ';
+            char[] chars;
+            string toPrint;
 
             switch (colour)
             {
@@ -88,11 +90,17 @@ namespace QuickChess.Model
             if ((i + 1) % Size == 0)
             {
                 // Finished priniting row, moving to another.
-                Console.Write(c + NEWLINE);
+                chars = new char [] {c, NEWLINE};
+                toPrint = new string(chars);
+                Console.Write(toPrint);
+                Console.ForegroundColor = ConsoleColor.White;
                 return;
             }
 
-            Console.Write(c + COLUMN_SEPARATOR);
+            chars = new char [] {c, COLUMN_SEPARATOR};
+            toPrint = new string(chars);
+            Console.Write(toPrint);
+
             Console.ForegroundColor = ConsoleColor.White;
         }
     }

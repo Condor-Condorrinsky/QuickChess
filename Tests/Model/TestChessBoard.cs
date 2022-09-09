@@ -13,21 +13,21 @@ namespace QuickChess.Tests.Model
         public void TestPutPiece ()
         {
             ChessBoard chessBoard = new ChessBoard(CLASSIC_CHESSBOARD_SIZE);
-            PieceFactory ps = new PieceFactory();
+            PieceFactory pf = new PieceFactory();
 
-            BoardPiece bishop = ps.GetNewBlackBishop();
-            BoardPiece king = ps.GetNewBlackKing();
-            BoardPiece queen = ps.GetNewBlackQueen();
+            BoardPiece bishop = pf.GetNewBlackBishop();
+            BoardPiece king = pf.GetNewBlackKing();
+            BoardPiece queen = pf.GetNewBlackQueen();
 
             chessBoard.PutPiece(0, 1, bishop);
             chessBoard.PutPiece(5, 7, king);
             chessBoard.PutPiece(5, 3, queen);
 
-            Assert.AreEqual(chessBoard.Grid[0,1].Piece.FullName, bishop.FullName);
-            Assert.AreEqual(chessBoard.Grid[5,7].Piece.FullName, king.FullName);
-            Assert.AreEqual(chessBoard.Grid[5,3].Piece.FullName, queen.FullName);
+            Assert.AreEqual(chessBoard.GetPiece(0, 1).FullName, bishop.FullName);
+            Assert.AreEqual(chessBoard.GetPiece(5, 7).FullName, king.FullName);
+            Assert.AreEqual(chessBoard.GetPiece(5, 3).FullName, queen.FullName);
 
-            //chessBoard.PrintBoard();
+            chessBoard.PrintBoard();
         }
     }
 }
