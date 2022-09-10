@@ -24,9 +24,20 @@ namespace QuickChess.Model
             }
         }
 
-        public BoardPiece GetPiece(uint row, uint column) { return this.Grid[row, column].Piece; }
+        public BoardPiece GetPiece(uint row, uint column)
+        {
+            return this.Grid[row, column].Piece;
+        }
 
-        public void PutPiece(uint row, uint column, BoardPiece piece) { this.Grid[row, column].Piece = piece; }
+        public void PutPiece(uint row, uint column, BoardPiece piece)
+        {
+            this.Grid[row, column].Piece = piece;
+        }
+
+        public void MakeMove()
+        {
+            
+        }
 
         // Should belong to View but it's a temporary solution
         public void PrintBoard ()
