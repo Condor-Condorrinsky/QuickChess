@@ -39,26 +39,26 @@ namespace QuickChess.Model
 
                     switch (piece.FullName)
                     {
-                        case FullNamesOfPieces.None:
-                            PrintSingleSquare(j, ShortNamesOfPieces.None, piece.Colour);
+                        case FullNamesOfPieces.NONE:
+                            PrintSingleSquare(j, ShortNamesOfPieces.NONE, piece.Colour);
                             break;
-                        case FullNamesOfPieces.Pawn:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Pawn, piece.Colour);
+                        case FullNamesOfPieces.PAWN:
+                            PrintSingleSquare(j, ShortNamesOfPieces.PAWN, piece.Colour);
                             break;
-                        case FullNamesOfPieces.Knight:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Knight, piece.Colour);
+                        case FullNamesOfPieces.KNIGHT:
+                            PrintSingleSquare(j, ShortNamesOfPieces.KNIGHT, piece.Colour);
                             break;
-                        case FullNamesOfPieces.Bishop:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Bishop, piece.Colour);
+                        case FullNamesOfPieces.BISHOP:
+                            PrintSingleSquare(j, ShortNamesOfPieces.BISHOP, piece.Colour);
                             break;
-                        case FullNamesOfPieces.Rook:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Rook, piece.Colour);
+                        case FullNamesOfPieces.ROOK:
+                            PrintSingleSquare(j, ShortNamesOfPieces.ROOK, piece.Colour);
                             break;
-                        case FullNamesOfPieces.Queen:
-                            PrintSingleSquare(j, ShortNamesOfPieces.Queen, piece.Colour);
+                        case FullNamesOfPieces.QUEEN:
+                            PrintSingleSquare(j, ShortNamesOfPieces.QUEEN, piece.Colour);
                             break;
-                        case FullNamesOfPieces.King:
-                            PrintSingleSquare(j, ShortNamesOfPieces.King, piece.Colour);
+                        case FullNamesOfPieces.KING:
+                            PrintSingleSquare(j, ShortNamesOfPieces.KING, piece.Colour);
                             break;
                         default:
                             throw new ArgumentException("ChessBoard received different piece than expected.");

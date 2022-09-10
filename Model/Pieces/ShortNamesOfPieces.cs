@@ -3,12 +3,12 @@ namespace QuickChess.Model.Pieces
     public static class ShortNamesOfPieces
     {
         // Square
-        public const char None = '\u25A1';
-        public const char Pawn = 'P';
-        public const char Knight = 'N';
-        public const char Bishop = 'B';
-        public const char Rook = 'R';
-        public const char Queen = 'Q';
-        public const char King = 'K';
+        public const char NONE = '\u25A1';
+        public const char PAWN = 'P';
+        public const char KNIGHT = 'N';
+        public const char BISHOP = 'B';
+        public const char ROOK = 'R';
+        public const char QUEEN = 'Q';
+        public const char KING = 'K';
     }
 }
