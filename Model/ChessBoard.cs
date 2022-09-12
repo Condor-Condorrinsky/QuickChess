@@ -29,9 +29,19 @@ namespace QuickChess.Model
             return this.Grid[row, column].Piece;
         }
 
+        public BoardPiece GetPiece(Coordinates coords)
+        {
+            return this.Grid[coords.Row, coords.Column].Piece;
+        }
+
         public void PutPiece(uint row, uint column, BoardPiece piece)
         {
             this.Grid[row, column].Piece = piece;
+        }
+
+        public void PutPiece(Coordinates coords, BoardPiece piece)
+        {
+            this.Grid[coords.Row, coords.Column].Piece = piece;
         }
 
         public void MakeMove()
