@@ -7,7 +7,7 @@ namespace QuickChess.Model.Pieces
 
         public Coordinates (int row, int column)
         {
-            if (row < 0 || column < 0) throw new ArgumentException("Coordinate values cannot be negative");
+            if (row < 0 || column < 0) throw new ArgumentOutOfRangeException("Coordinate values cannot be negative");
 
             this.Row = row;
             this.Column = column;

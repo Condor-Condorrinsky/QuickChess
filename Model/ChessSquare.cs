@@ -15,6 +15,8 @@ namespace QuickChess.Model
 
         public ChessSquare (int row, int column, BoardPiece piece)
         {
+            if (row < 0 || column < 0) throw new ArgumentOutOfRangeException("Coordinate values cannot be negative");
+
             this.Coords = new Coordinates(row, column);
             this.Piece = piece;
         }
