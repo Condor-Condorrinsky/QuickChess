@@ -13,7 +13,7 @@ namespace QuickChess.Model
             this.Piece = piece;
         }
 
-        public ChessSquare (uint row, uint column, BoardPiece piece)
+        public ChessSquare (int row, int column, BoardPiece piece)
         {
             this.Coords = new Coordinates(row, column);
             this.Piece = piece;

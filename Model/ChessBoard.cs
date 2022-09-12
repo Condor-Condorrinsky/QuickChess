@@ -14,9 +14,9 @@ namespace QuickChess.Model
             this.Grid = new ChessSquare[size, size];
             this.Factory = new PieceFactory();
 
-            for (uint i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (uint j = 0; j < size; j++)
+                for (int j = 0; j < size; j++)
                 {
                     // PutPiece(i, j, Factory.GetDefaultPiece());
                     Grid[i, j] = new ChessSquare(i, j, Factory.GetDefaultPiece());
@@ -24,8 +24,10 @@ namespace QuickChess.Model
             }
         }
 
-        public BoardPiece GetPiece(uint row, uint column)
+        public BoardPiece GetPiece(int row, int column)
         {
+            if (row < 0 || column < 0 || row > (Size-1) || column > (Size-1)) throw new IndexOutOfRangeException();
+
             return this.Grid[row, column].Piece;
         }
 
@@ -34,8 +36,10 @@ namespace QuickChess.Model
             return this.Grid[coords.Row, coords.Column].Piece;
         }
 
-        public void PutPiece(uint row, uint column, BoardPiece piece)
+        public void PutPiece(int row, int column, BoardPiece piece)
         {
+            if (row < 0 || column < 0 || row > (Size-1) || column > (Size-1)) throw new IndexOutOfRangeException();
+
             this.Grid[row, column].Piece = piece;
         }
 
@@ -52,9 +56,9 @@ namespace QuickChess.Model
         // Should belong to View but it's a temporary solution
         public void PrintBoard ()
         {
-            for (uint i = 0; i < Size; i++)
+            for (int i = 0; i < Size; i++)
             {
-                for (uint j = 0; j < Size; j++)
+                for (int j = 0; j < Size; j++)
                 {
                     BoardPiece piece = GetPiece(i, j);
 
@@ -88,7 +92,7 @@ namespace QuickChess.Model
             }
         }
 
-        private void PrintSingleSquare (uint i, char c, Colour colour)
+        private void PrintSingleSquare (int i, char c, Colour colour)
         {
             const char NEWLINE = '\n';
             const char COLUMN_SEPARATOR = ' ';

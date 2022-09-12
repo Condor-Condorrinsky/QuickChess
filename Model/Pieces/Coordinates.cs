@@ -2,11 +2,13 @@ namespace QuickChess.Model.Pieces
 {
     public class Coordinates
     {
-        public uint Row { get; set; }
-        public uint Column { get; set; }
+        public int Row { get; set; }
+        public int Column { get; set; }
 
-        public Coordinates (uint row, uint column)
+        public Coordinates (int row, int column)
         {
+            if (row < 0 || column < 0) throw new ArgumentException("Coordinate values cannot be negative");
+
             this.Row = row;
             this.Column = column;
         }
