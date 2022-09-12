@@ -4,14 +4,18 @@ namespace QuickChess.Model
 {
     public class ChessSquare
     {
-        public uint Row { get; set; }
-        public uint Column { get; set; }
+        public Coordinates Coords { get; set; }
         public BoardPiece Piece { get; set; }
+
+        public ChessSquare (Coordinates coords, BoardPiece piece)
+        {
+            this.Coords = coords;
+            this.Piece = piece;
+        }
 
         public ChessSquare (uint row, uint column, BoardPiece piece)
         {
-            this.Row = row;
-            this.Column = column;
+            this.Coords = new Coordinates(row, column);
             this.Piece = piece;
         }
 
