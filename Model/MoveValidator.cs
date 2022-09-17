@@ -17,9 +17,12 @@ namespace QuickChess.Model
             return false;
         }
 
-        public bool ValidateKingMove(Coordinates from, Coordinates to)
+        public bool ValidateKingMove(Coordinates from, Coordinates to, Colour cl)
         {
             const int KINGS_RANGE = 2;
+
+            // Square occupied by friendly piece
+            if (IsSquareOccupied(to) && CheckPieceColour(to) == cl) return false;
 
             if ((from.Row == to.Row) && (from.Column == to.Column)) return false;
             if (Math.Abs(to.Row - from.Row) < KINGS_RANGE && (Math.Abs(to.Column - from.Column)) < KINGS_RANGE) return true;
@@ -27,34 +30,43 @@ namespace QuickChess.Model
             return false;
         }
 
-        public bool ValidateQueenMove(Coordinates from, Coordinates to)
+        public bool ValidateQueenMove(Coordinates from, Coordinates to, Colour cl)
         {
-            if (ValidateBishopMove(from, to) || ValidateRookMove(from, to)) return true;
+            if (ValidateBishopMove(from, to, cl) || ValidateRookMove(from, to, cl)) return true;
 
             return false;
         }
 
-        public bool ValidateRookMove(Coordinates from, Coordinates to)
+        public bool ValidateRookMove(Coordinates from, Coordinates to, Colour cl)
         {
+            // Square occupied by friendly piece
+            if (IsSquareOccupied(to) && CheckPieceColour(to) == cl) return false;
+
             if ((from.Row == to.Row) && (from.Column != to.Column)) return true;
             if ((from.Row != to.Row) && (from.Column == to.Column)) return true;
 
             return false;
         }
 
-        public bool ValidateBishopMove(Coordinates from, Coordinates to)
+        public bool ValidateBishopMove(Coordinates from, Coordinates to, Colour cl)
         {
+            // Square occupied by friendly piece
+            if (IsSquareOccupied(to) && CheckPieceColour(to) == cl) return false;
+
             if ((from.Row == to.Row) && (from.Column == to.Column)) return false;
             if (Math.Abs(to.Row - from.Row) == (Math.Abs(to.Column - from.Column))) return true;
 
             return false;
         }
 
-        public bool ValidateKnightMove(Coordinates from, Coordinates to)
+        public bool ValidateKnightMove(Coordinates from, Coordinates to, Colour cl)
         {
             // Knights move in an "L" pattern: they always change their row by 2 and column by 1 or vice versa
             const int KNIGHTS_MOVE_RANGE_ONE = 1;
             const int KNIGHTS_MOVE_RANGE_TWO = 2;
+
+            // Square occupied by friendly piece
+            if (IsSquareOccupied(to) && CheckPieceColour(to) == cl) return false;
 
             if ((Math.Abs(to.Row - from.Row) == KNIGHTS_MOVE_RANGE_ONE) &&
                 (Math.Abs(to.Column - from.Column) == KNIGHTS_MOVE_RANGE_TWO)) return true;
@@ -71,6 +83,9 @@ namespace QuickChess.Model
             const int BLACK_PAWN_STARTING_ROW = 1;
             const int BLACK_PAWN_ROW_AFTER_DOUBLE_STEP = 3;
             const int PAWN_MOVE_RANGE = 1;
+
+            // Square occupied by friendly piece
+            if (IsSquareOccupied(to) && CheckPieceColour(to) == cl) return false;
 
             switch (cl)
             {
@@ -111,14 +126,14 @@ namespace QuickChess.Model
             return false;
         }
 
-        public bool IsSquareOccupied(Coordinates coords)
+        private bool IsSquareOccupied(Coordinates coords)
         {
             if (Grid[coords.Row, coords.Column].IsOccupied()) return true;
 
             return false;
         }
 
-        public Colour CheckPieceColour(Coordinates coords)
+        private Colour CheckPieceColour(Coordinates coords)
         {
             return Grid[coords.Row, coords.Column].Piece.Colour;
         }
