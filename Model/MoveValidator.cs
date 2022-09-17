@@ -82,11 +82,11 @@ namespace QuickChess.Model
                     if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column == to.Column) return true;
                     // Taking piece diagonally to the left of pawn
                     if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column - PAWN_MOVE_RANGE == to.Column &&
-                        Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.BLACK)
+                        IsSquareOccupied(to) && CheckPieceColour(to) == Colour.BLACK)
                         return true;
                     // Taking piece to the right of pawn
                     if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column + PAWN_MOVE_RANGE == to.Column &&
-                        Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.BLACK)
+                        IsSquareOccupied(to) && CheckPieceColour(to) == Colour.BLACK)
                         return true;
                     break;
                 case Colour.BLACK:
@@ -97,11 +97,11 @@ namespace QuickChess.Model
                     if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column == to.Column) return true;
                     // Taking piece diagonally to the left of pawn
                     if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column + PAWN_MOVE_RANGE == to.Column &&
-                        Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.WHITE)
+                        IsSquareOccupied(to) && CheckPieceColour(to) == Colour.WHITE)
                         return true;
                     // Taking piece diagonally to the right of pawn
                     if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column - PAWN_MOVE_RANGE == to.Column &&
-                        Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.WHITE)
+                        IsSquareOccupied(to) && CheckPieceColour(to) == Colour.WHITE)
                         return true;
                     break;
                 default:
@@ -109,6 +109,18 @@ namespace QuickChess.Model
             }
 
             return false;
+        }
+
+        public bool IsSquareOccupied(Coordinates coords)
+        {
+            if (Grid[coords.Row, coords.Column].IsOccupied()) return true;
+
+            return false;
+        }
+
+        public Colour CheckPieceColour(Coordinates coords)
+        {
+            return Grid[coords.Row, coords.Column].Piece.Colour;
         }
     }
 }
