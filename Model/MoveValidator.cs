@@ -92,7 +92,8 @@ namespace QuickChess.Model
                 case Colour.WHITE:
                     // Double hop when pawn is on its initial square
                     if (from.Row == WHITE_PAWN_STARTING_ROW && to.Row == WHITE_PAWN_ROW_AFTER_DOUBLE_STEP &&
-                        from.Column == to.Column) return true;
+                        from.Column == to.Column && !IsSquareOccupied(new Coordinates(to.Row - PAWN_MOVE_RANGE, to.Column)))
+                        return true;
                     // Normal move forward
                     if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column == to.Column) return true;
                     // Taking piece diagonally to the left of pawn
@@ -107,7 +108,8 @@ namespace QuickChess.Model
                 case Colour.BLACK:
                     // Double hop when pawn is on its initial square
                     if (from.Row == BLACK_PAWN_STARTING_ROW && to.Row == BLACK_PAWN_ROW_AFTER_DOUBLE_STEP &&
-                        from.Column == to.Column) return true;
+                        from.Column == to.Column && !IsSquareOccupied(new Coordinates(to.Row + PAWN_MOVE_RANGE, to.Column)))
+                        return true;
                     // Normal move forward
                     if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column == to.Column) return true;
                     // Taking piece diagonally to the left of pawn
