@@ -4,7 +4,12 @@ namespace QuickChess.Model
 {
     public class MoveValidator
     {
-        public MoveValidator () {}
+        public ChessSquare[,] Grid { get; set; }
+
+        public MoveValidator (ChessSquare[,] grid)
+        {
+            this.Grid = grid;
+        }
 
         // TODO: finish the body
         public bool IsMoveValid()
@@ -55,6 +60,40 @@ namespace QuickChess.Model
         // TODO: finish implementation
         public bool ValidatePawnMove(Coordinates from, Coordinates to, Colour cl)
         {
+            switch (cl)
+            {
+                case Colour.WHITE:
+                    // Double hop when pawn is on its initial square
+                    if (from.Row == 6 && to.Row == 4 && from.Column == to.Column) return true;
+                    // Normal move forward
+                    if (from.Row - 1 == to.Row && from.Column == to.Column) return true;
+                    // Taking piece to the left of pawn
+                    if (from.Row - 1 == to.Row && from.Column - 1 == to.Column &&
+                        Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.BLACK)
+                        return true;
+                    // Taking piece to the right of pawn
+                    if (from.Row - 1 == to.Row && from.Column + 1 == to.Column &&
+                        Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.BLACK)
+                        return true;
+                    break;
+                case Colour.BLACK:
+                    // Double hop when pawn is on its initial square
+                    if (from.Row == 1 && to.Row == 3 && from.Column == to.Column) return true;
+                    // Normal move forward
+                    if (from.Row + 1 == to.Row && from.Column == to.Column) return true;
+                    // Taking piece to the left of pawn
+                    if (from.Row + 1 == to.Row && from.Column + 1 == to.Column &&
+                        Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.WHITE)
+                        return true;
+                    // Taking piece to the right of pawn
+                    if (from.Row + 1 == to.Row && from.Column - 1 == to.Column &&
+                        Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.WHITE)
+                        return true;
+                    break;
+                default:
+                    throw new ArgumentException("Received colour other than BLACK or WHITE");
+            }
+
             return false;
         }
     }
