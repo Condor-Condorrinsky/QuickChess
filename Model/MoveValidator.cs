@@ -21,6 +21,7 @@ namespace QuickChess.Model
         {
             const int KINGS_RANGE = 2;
 
+            if ((from.Row == to.Row) && (from.Column == to.Column)) return false;
             if (Math.Abs(to.Row - from.Row) < KINGS_RANGE && (Math.Abs(to.Column - from.Column)) < KINGS_RANGE) return true;
 
             return false;
@@ -51,42 +52,55 @@ namespace QuickChess.Model
 
         public bool ValidateKnightMove(Coordinates from, Coordinates to)
         {
-            if ((Math.Abs(to.Row - from.Row) == 1) && (Math.Abs(to.Column - from.Column) == 2)) return true;
-            if ((Math.Abs(to.Row - from.Row) == 2) && (Math.Abs(to.Column - from.Column) == 1)) return true;
+            // Knights move in an "L" pattern: they always change their row by 2 and column by 1 or vice versa
+            const int KNIGHTS_MOVE_RANGE_ONE = 1;
+            const int KNIGHTS_MOVE_RANGE_TWO = 2;
+
+            if ((Math.Abs(to.Row - from.Row) == KNIGHTS_MOVE_RANGE_ONE) &&
+                (Math.Abs(to.Column - from.Column) == KNIGHTS_MOVE_RANGE_TWO)) return true;
+            if ((Math.Abs(to.Row - from.Row) == KNIGHTS_MOVE_RANGE_TWO) &&
+                (Math.Abs(to.Column - from.Column) == KNIGHTS_MOVE_RANGE_ONE)) return true;
 
             return false;
         }
 
-        // TODO: finish implementation
         public bool ValidatePawnMove(Coordinates from, Coordinates to, Colour cl)
         {
+            const int WHITE_PAWN_STARTING_ROW = 6;
+            const int WHITE_PAWN_ROW_AFTER_DOUBLE_STEP = 4;
+            const int BLACK_PAWN_STARTING_ROW = 1;
+            const int BLACK_PAWN_ROW_AFTER_DOUBLE_STEP = 3;
+            const int PAWN_MOVE_RANGE = 1;
+
             switch (cl)
             {
                 case Colour.WHITE:
                     // Double hop when pawn is on its initial square
-                    if (from.Row == 6 && to.Row == 4 && from.Column == to.Column) return true;
+                    if (from.Row == WHITE_PAWN_STARTING_ROW && to.Row == WHITE_PAWN_ROW_AFTER_DOUBLE_STEP &&
+                        from.Column == to.Column) return true;
                     // Normal move forward
-                    if (from.Row - 1 == to.Row && from.Column == to.Column) return true;
-                    // Taking piece to the left of pawn
-                    if (from.Row - 1 == to.Row && from.Column - 1 == to.Column &&
+                    if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column == to.Column) return true;
+                    // Taking piece diagonally to the left of pawn
+                    if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column - PAWN_MOVE_RANGE == to.Column &&
                         Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.BLACK)
                         return true;
                     // Taking piece to the right of pawn
-                    if (from.Row - 1 == to.Row && from.Column + 1 == to.Column &&
+                    if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column + PAWN_MOVE_RANGE == to.Column &&
                         Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.BLACK)
                         return true;
                     break;
                 case Colour.BLACK:
                     // Double hop when pawn is on its initial square
-                    if (from.Row == 1 && to.Row == 3 && from.Column == to.Column) return true;
+                    if (from.Row == BLACK_PAWN_STARTING_ROW && to.Row == BLACK_PAWN_ROW_AFTER_DOUBLE_STEP &&
+                        from.Column == to.Column) return true;
                     // Normal move forward
-                    if (from.Row + 1 == to.Row && from.Column == to.Column) return true;
-                    // Taking piece to the left of pawn
-                    if (from.Row + 1 == to.Row && from.Column + 1 == to.Column &&
+                    if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column == to.Column) return true;
+                    // Taking piece diagonally to the left of pawn
+                    if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column + PAWN_MOVE_RANGE == to.Column &&
                         Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.WHITE)
                         return true;
-                    // Taking piece to the right of pawn
-                    if (from.Row + 1 == to.Row && from.Column - 1 == to.Column &&
+                    // Taking piece diagonally to the right of pawn
+                    if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column - PAWN_MOVE_RANGE == to.Column &&
                         Grid[to.Row, to.Column].IsOccupied() && Grid[to.Row, to.Column].Piece.Colour == Colour.WHITE)
                         return true;
                     break;
