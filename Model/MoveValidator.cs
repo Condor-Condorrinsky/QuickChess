@@ -92,10 +92,14 @@ namespace QuickChess.Model
                 case Colour.WHITE:
                     // Double hop when pawn is on its initial square
                     if (from.Row == WHITE_PAWN_STARTING_ROW && to.Row == WHITE_PAWN_ROW_AFTER_DOUBLE_STEP &&
-                        from.Column == to.Column && !IsSquareOccupied(new Coordinates(to.Row - PAWN_MOVE_RANGE, to.Column)))
+                        from.Column == to.Column &&
+                        // Is the square you're hoping over occupied?
+                        !IsSquareOccupied(new Coordinates(to.Row - PAWN_MOVE_RANGE, to.Column)))
                         return true;
                     // Normal move forward
-                    if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column == to.Column) return true;
+                    if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column == to.Column &&
+                        !IsSquareOccupied(to))
+                        return true;
                     // Taking piece diagonally to the left of pawn
                     if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column - PAWN_MOVE_RANGE == to.Column &&
                         IsSquareOccupied(to) && CheckPieceColour(to) == Colour.BLACK)
@@ -108,10 +112,14 @@ namespace QuickChess.Model
                 case Colour.BLACK:
                     // Double hop when pawn is on its initial square
                     if (from.Row == BLACK_PAWN_STARTING_ROW && to.Row == BLACK_PAWN_ROW_AFTER_DOUBLE_STEP &&
-                        from.Column == to.Column && !IsSquareOccupied(new Coordinates(to.Row + PAWN_MOVE_RANGE, to.Column)))
+                        from.Column == to.Column &&
+                        // Is the square you're hoping over occupied?
+                        !IsSquareOccupied(new Coordinates(to.Row + PAWN_MOVE_RANGE, to.Column)))
                         return true;
                     // Normal move forward
-                    if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column == to.Column) return true;
+                    if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column == to.Column &&
+                        !IsSquareOccupied(to))
+                        return true;
                     // Taking piece diagonally to the left of pawn
                     if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column + PAWN_MOVE_RANGE == to.Column &&
                         IsSquareOccupied(to) && CheckPieceColour(to) == Colour.WHITE)
