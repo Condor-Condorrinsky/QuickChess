@@ -94,7 +94,9 @@ namespace QuickChess.Model
                     if (from.Row == WHITE_PAWN_STARTING_ROW && to.Row == WHITE_PAWN_ROW_AFTER_DOUBLE_STEP &&
                         from.Column == to.Column &&
                         // Is the square you're hoping over occupied?
-                        !IsSquareOccupied(new Coordinates(to.Row - PAWN_MOVE_RANGE, to.Column)))
+                        !IsSquareOccupied(new Coordinates(to.Row - PAWN_MOVE_RANGE, to.Column)) &&
+                        // Is the destination square occupied?
+                        !IsSquareOccupied(to))
                         return true;
                     // Normal move forward
                     if (from.Row - PAWN_MOVE_RANGE == to.Row && from.Column == to.Column &&
@@ -114,7 +116,9 @@ namespace QuickChess.Model
                     if (from.Row == BLACK_PAWN_STARTING_ROW && to.Row == BLACK_PAWN_ROW_AFTER_DOUBLE_STEP &&
                         from.Column == to.Column &&
                         // Is the square you're hoping over occupied?
-                        !IsSquareOccupied(new Coordinates(to.Row + PAWN_MOVE_RANGE, to.Column)))
+                        !IsSquareOccupied(new Coordinates(to.Row + PAWN_MOVE_RANGE, to.Column)) &&
+                        // Is the destination square occupied?
+                        !IsSquareOccupied(to))
                         return true;
                     // Normal move forward
                     if (from.Row + PAWN_MOVE_RANGE == to.Row && from.Column == to.Column &&
