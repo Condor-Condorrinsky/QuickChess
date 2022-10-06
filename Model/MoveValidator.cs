@@ -11,10 +11,25 @@ namespace QuickChess.Model
             this.Grid = grid;
         }
 
-        // TODO: finish the body
-        public bool IsMoveValid()
+        public bool IsMoveValid(BoardPiece piece, Coordinates from, Coordinates to, Colour cl)
         {
-            return false;
+            switch (piece.FullName)
+            {
+                case "King":
+                    return ValidateKingMove(from, to, cl);
+                case "Queen":
+                    return ValidateQueenMove(from, to, cl);
+                case "Rook":
+                    return ValidateRookMove(from, to , cl);
+                case "Bishop":
+                    return ValidateBishopMove(from, to, cl);
+                case "Knight":
+                    return ValidateKnightMove(from, to, cl);
+                case "Pawn":
+                    return ValidatePawnMove(from, to, cl);
+                default:
+                    throw new ArgumentException("Did not receive a valid chess piece as an argument");
+            }
         }
 
         public bool ValidateKingMove(Coordinates from, Coordinates to, Colour cl)
