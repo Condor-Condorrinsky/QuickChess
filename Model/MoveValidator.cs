@@ -76,9 +76,21 @@ namespace QuickChess.Model
         {
             // Square occupied by friendly piece
             if (IsSquareOccupied(to) && CheckPieceColour(to) == cl) return false;
-
+            // No change of position
             if ((from.Row == to.Row) && (from.Column == to.Column)) return false;
-            if (Math.Abs(to.Row - from.Row) == (Math.Abs(to.Column - from.Column))) return true;
+
+            // Are any squares along the way occupied?
+            if (Math.Abs(to.Row - from.Row) == (Math.Abs(to.Column - from.Column)))
+            {
+                int bound = Math.Abs(to.Row - from.Row);
+
+                for (int i = 1; i < bound; i++)
+                {
+
+                }
+
+                return true;
+            }
 
             return false;
         }
