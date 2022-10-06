@@ -32,18 +32,42 @@ namespace QuickChess.Model
 
         public bool ValidateQueenMove(Coordinates from, Coordinates to, Colour cl)
         {
-            if (ValidateBishopMove(from, to, cl) || ValidateRookMove(from, to, cl)) return true;
-
-            return false;
+            return (ValidateBishopMove(from, to, cl) || ValidateRookMove(from, to, cl));
         }
 
         public bool ValidateRookMove(Coordinates from, Coordinates to, Colour cl)
         {
+            int GetLowerBound(int first, int second) => first < second ? first : second;
+            int GetUpperBound(int first, int second) => first > second ? first : second;
+
             // Square occupied by friendly piece
             if (IsSquareOccupied(to) && CheckPieceColour(to) == cl) return false;
 
-            if ((from.Row == to.Row) && (from.Column != to.Column)) return true;
-            if ((from.Row != to.Row) && (from.Column == to.Column)) return true;
+            // Are any squares along the way occupied?
+            if ((from.Row == to.Row) && (from.Column != to.Column))
+            {
+                int lower = GetLowerBound(from.Column, to.Column) + 1;
+                int upper = GetUpperBound(from.Column, to.Column);
+
+                for (int i = lower; i < upper; i++)
+                {
+                    if (IsSquareOccupied(new Coordinates(to.Row, i))) return false;
+                }
+
+                return true;
+            }
+            if ((from.Row != to.Row) && (from.Column == to.Column))
+            {
+                int lower = GetLowerBound(from.Row, to.Row) + 1;
+                int upper = GetUpperBound(from.Row, to.Row);
+
+                for (int i = lower; i < upper; i++)
+                {
+                    if (IsSquareOccupied(new Coordinates(i, to.Column))) return false;
+                }
+
+                return true;
+            }
 
             return false;
         }
