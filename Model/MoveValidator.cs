@@ -193,9 +193,7 @@ namespace QuickChess.Model
 
         private bool IsSquareOccupied(Coordinates coords)
         {
-            if (Grid[coords.Row, coords.Column].IsOccupied()) return true;
-
-            return false;
+            return (Grid[coords.Row, coords.Column].IsOccupied());
         }
 
         private Colour CheckPieceColour(Coordinates coords)
