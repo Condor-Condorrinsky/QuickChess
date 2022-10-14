@@ -2,7 +2,7 @@ using NUnit.Framework;
 using QuickChess.Model;
 using QuickChess.Model.Pieces;
 
-namespace QuickChess.Tests.Model
+namespace QuickChess.Tests.Model.Pieces
 {
     [TestFixture]
     public class TestBoardPiece

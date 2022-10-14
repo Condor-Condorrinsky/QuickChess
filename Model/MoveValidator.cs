@@ -98,10 +98,32 @@ namespace QuickChess.Model
             if (Math.Abs(to.Row - from.Row) == (Math.Abs(to.Column - from.Column)))
             {
                 int bound = Math.Abs(to.Row - from.Row);
+                int rowChange = Math.Sign(from.Row - to.Row);
+                int columnChange = Math.Sign(from.Column - to.Column);
 
                 for (int i = 1; i < bound; i++)
                 {
-
+                    if (rowChange > 0 && columnChange > 0)
+                    {
+                        Coordinates test = new Coordinates(from.Row + i, from.Column + i);
+                        if (IsSquareOccupied(test)) return false;
+                    }
+                    else if (rowChange > 0 && columnChange < 0)
+                    {
+                        Coordinates test = new Coordinates(from.Row + i, from.Column - i);
+                        if (IsSquareOccupied(test)) return false;
+                    }
+                    else if (rowChange < 0 && columnChange > 0)
+                    {
+                        Coordinates test = new Coordinates(from.Row - i, from.Column + i);
+                        if (IsSquareOccupied(test)) return false;
+                    }
+                    else if (rowChange < 0 && columnChange < 0)
+                    {
+                        Coordinates test = new Coordinates(from.Row - i, from.Column - i);
+                        if (IsSquareOccupied(test)) return false;
+                    }
+                    else throw new ArithmeticException("Somehow the \"if\" has failed me");
                 }
 
                 return true;
