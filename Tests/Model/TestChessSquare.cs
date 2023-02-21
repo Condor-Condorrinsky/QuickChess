@@ -12,8 +12,8 @@ namespace QuickChess.Tests.Model
         {
             PieceFactory pf = new PieceFactory();
 
-            ChessSquare occupied = new ChessSquare(0, 0, pf.GetNewBlackBishop());
-            ChessSquare unoccupied = new ChessSquare(0, 0, pf.GetDefaultPiece());
+            ChessSquare occupied = new ChessSquare(pf.GetNewBlackBishop());
+            ChessSquare unoccupied = new ChessSquare(pf.GetDefaultPiece());
 
             Assert.True(occupied.IsOccupied());
             Assert.False(unoccupied.IsOccupied());

@@ -19,7 +19,7 @@ namespace QuickChess.Model
                 for (int j = 0; j < size; j++)
                 {
                     // PutPiece(i, j, Factory.GetDefaultPiece());
-                    Grid[i, j] = new ChessSquare(i, j, Factory.GetDefaultPiece());
+                    Grid[i, j] = new ChessSquare(Factory.GetDefaultPiece());
                 }
             }
         }
