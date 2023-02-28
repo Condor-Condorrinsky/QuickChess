@@ -33,6 +33,8 @@ namespace QuickChess.Model
 
         public BoardPiece GetPiece(Coordinates coords)
         {
+            if (coords.Row < 0 || coords.Column < 0 || coords.Row > (Size-1) || coords.Column > (Size-1)) throw new IndexOutOfRangeException();
+
             return this.Grid[coords.Row, coords.Column].Piece;
         }
 
@@ -45,6 +47,8 @@ namespace QuickChess.Model
 
         public void PutPiece(Coordinates coords, BoardPiece piece)
         {
+            if (coords.Row < 0 || coords.Column < 0 || coords.Row > (Size-1) || coords.Column > (Size-1)) throw new IndexOutOfRangeException();
+
             this.Grid[coords.Row, coords.Column].Piece = piece;
         }
 
