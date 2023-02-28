@@ -1,6 +1,7 @@
+using QuickChess.Model;
 using QuickChess.Model.Pieces;
 
-namespace QuickChess.Model
+namespace QuickChess.Controller
 {
     public class MoveValidator
     {
