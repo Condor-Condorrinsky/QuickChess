@@ -15,7 +15,7 @@ namespace QuickChess.Model
         {
             PieceFactory pf = new PieceFactory();
 
-            if (Piece.Equals(pf.GetDefaultPiece())) return false;
+            if (Piece.Equals(pf.GetEmptyPiece())) return false;
             return true;
         }
     }

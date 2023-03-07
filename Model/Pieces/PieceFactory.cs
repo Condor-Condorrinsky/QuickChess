@@ -4,7 +4,7 @@ namespace QuickChess.Model.Pieces
     {
         public PieceFactory () {}
 
-        public BoardPiece GetDefaultPiece ()
+        public BoardPiece GetEmptyPiece ()
         {
             return new BoardPiece(FullNamesOfPieces.NONE, ShortNamesOfPieces.NONE, Colour.NONE);
         }
